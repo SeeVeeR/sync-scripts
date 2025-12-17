@@ -20,20 +20,26 @@ sync_folder() {
   local FOLDER="$1"
 
   echo
-  echo "Синхронизация папки $FOLDER"
-  read -p "Если всё ок, нажми Enter для dry-run..."
+  echo "[INFO] Синхронизация папки: $FOLDER"
+
+  echo "[CHECK] Dry-run. Изменения НЕ применяются."
+  read -p "Нажми Enter для выполнения dry-run..."
 
   rsync $RSYNC_OPTS --dry-run -e ssh \
     "$SRC_MINT/$FOLDER" \
     "$USER@$HOST:$SRC_SERVER/$FOLDER"
 
   echo
-  read -p "Если всё ок, нажми Enter для реальной синхронизации..."
+  echo "[RUN] Реальная синхронизация."
+  read -p "Если всё ок, нажми Enter для запуска..."
 
   rsync $RSYNC_OPTS -e ssh \
     "$SRC_MINT/$FOLDER" \
     "$USER@$HOST:$SRC_SERVER/$FOLDER"
+
+  echo "[OK] Синхронизация завершена: $FOLDER"
 }
+
 
 ###########################################################
 # Вызовы
