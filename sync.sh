@@ -36,4 +36,4 @@ sync_folder() {
 # Запуски
 # sync_folder "$LINUX_BOOKS"
 # sync_folder "$LINUX_VIDEO"
-sync_folder "$OBSIDIAN"
+sync_folder "${FOLDERS[2]}"
